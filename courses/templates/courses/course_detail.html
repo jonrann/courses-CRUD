@@ -1,0 +1,21 @@
+{% extends "courses/_base.html" %}
+
+{% block content %}
+<h1>Course Details:</h1>
+<h2>{{course.name}}</h2>
+<p>{{course.description}}</p>
+<p>{{course.created_at}}</p>
+<hr>
+<h2>Comments:</h2>
+{% for comment in course.comments.all %}
+<p> - {{comment.content}}</p>
+{% endfor %}
+<h3>Make a Comment</h3>
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Comment">
+</form>
+
+
+{% endblock content %}

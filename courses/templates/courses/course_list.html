@@ -1,0 +1,21 @@
+{% extends "courses/_base.html" %}
+
+
+{% block content %}
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{form}}
+    {{description_form}}
+    <input type="submit" value="Create Course">
+</form>
+<h1>Courses</h1>
+<ul>
+    {% for course in courses %}
+    <a href="{% url "course-detail" course.id %}"><li>Course Name: {{course.name}}</li></a>
+    <li>Description: {{course.description.content}}</li>
+    <li>Start Date: {{course.created_at}}</li>
+    <button><a href="{% url "course-delete" course.id %}">Delete</a></button>
+    <hr>
+    {% endfor %}
+</ul>
+{% endblock content %}
